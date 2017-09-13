@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+
+<body>
+
+<button onclick="newBackground.start()">START</button>
+<button onclick="newBackground.stop()">STOP</button>
+
+<script>
+
+    function bgColor() {
+        this.color = 255;
+        this.continue = true;
+
+        this.start = function() {
+            this.intervalId = setInterval(function () {
+                if (this.color <= 0) {
+                    this.continue = true;
+                }
+                if (this.color >= 255) {
+                    this.continue = false;
+                }
+                this.color += (this.continue ? 1 : -1);
+                document.body.style.backgroundColor = 'rgb(' + this.color + ', ' + this.color + ', ' + this.color + ')';
+            }.bind(this), 20);
+        };
+
+        this.stop = function() {
+            clearInterval(this.intervalId);
+        };
+    }
+    var newBackground = new bgColor();
+
+</script>
+
+</body>
+
+</html>
